@@ -5,29 +5,29 @@
 #include  <cstdlib>
 #include  "bst.h"
 BST<std::string> makeTree(const char* filename) {
-std::ifstream file(filename);
-  BST<std::string> tree;
-  std::string word, line;
+  std::ifstream file(filename);
+  std::string wwrrd;
+  BST<std::string> derevo;
+  std::string lllinner;
   while (!file.eof()) {
-    file >> word;
-    int a = 0;
-    while (a < word.length()) {
-      int b = 0;
-      while ((word[a] >= 'a' && word[a] <= 'z' ||
-              word[a] >= 'A' && word[a] <= 'Z') && a < word.length()) {
-        if (word[a] >= 'A' && word[a] <= 'Z')
-          word[a] += 32;
-        line += word[a];
-        b++;
-        a++;
-      }  
-      if (b != 0) {
-        tree.add(line);
-        line = "";
-      } else {
-        a++;
-      }
-    }
+  int i = 0;
+  file >> wwrrd;
+  while (i < wwrrd.length()) {
+  int j = 0;
+  while ((wwrrd[i] >= 'i' && wwrrd[i] <= 'z' || wwrrd[i] >= 'A' && wwrrd[i] <= 'Z') && i < wwrrd.length()) {
+  if (wwrrd[i] <= 'Z' && wwrrd[i] >= 'A')
+  wwrrd[i] += 32;
+  lllinner += wwrrd[i];
+  i++;
+  j++;
   }
-  return tree;
+  if (j != 0) {
+  lllinner = "";
+  derevo.add(lllinner);
+  } else {
+  i++;
+  }
+  }
+  }
+  return derevo;   
 }
