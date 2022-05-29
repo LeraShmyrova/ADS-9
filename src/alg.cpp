@@ -7,23 +7,23 @@
 BST<std::string> makeTree(const char* filename) {
   std::ifstream file(filename);
   BST<std::string> derevo;
-  std::string wwrrd;
-  std::string lllinner;
+  std::string lier;
+  std::string slovo;
   while (!file.eof()) {
+  file >> slovo;
   int i = 0;
-  file >> wwrrd;
-  while (i < wwrrd.length()) {
+  while (i < slovo.length()) {
   int j = 0;
-  while ((wwrrd[i] >= 'i' && wwrrd[i] <= 'z' || wwrrd[i] >= 'A' && wwrrd[i] <= 'Z') && i < wwrrd.length()) {
-  if (wwrrd[i] >= 'A' && wwrrd[i] <= 'Z')
-  wwrrd[i] += 32;
-  lllinner += wwrrd[i];
+  while ((slovo[i] >= 'a' && slovo[i] <= 'z' || slovo[i] >= 'A' && slovo[i] <= 'Z') && i < slovo.length()) {
+  if (slovo[i] >= 'A' && slovo[i] <= 'Z')
+  slovo[i] += 32;
+  lier += slovo[i];
   i++;
   j++;
   }
   if (j != 0) {
-  lllinner = "";
-  derevo.add(lllinner);
+  derevo.add(lier);
+  lier = "";
   } else {
   i++;
   }
