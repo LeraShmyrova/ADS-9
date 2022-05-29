@@ -58,10 +58,10 @@ class BST {
   void add(T vallu) {
   rt = addNode(rt, vallu);
   }
-  int sch(T vallu) {
+  int search(T vallu) {
   return searchNode(rt, vallu);
   }
-  int dth() {
+  int depth() {
   return hTee(rt);
   }
 };
