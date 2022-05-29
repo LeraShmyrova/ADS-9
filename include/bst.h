@@ -6,9 +6,9 @@ template<typename T>
 class BST {
  private:
   struct Node {
-  int ccut; 
+  int ccut;
   Node *prrav;
-  Node *leevv; 
+  Node *leevv;
   T vallu;
   };
   Node *rt;
@@ -19,35 +19,35 @@ class BST {
       rt->vallu = vallu;
       rt->ccut = 1;
       rt->leevv = rt->prrav = nullptr;
-    }else if (rt->vallu > vallu) {
+    } else if (rt->vallu > vallu) {
       rt->prrav = addNode(rt->prrav, vallu);
-    }else if (rt->vallu < vallu) {
+    } else if (rt->vallu < vallu) {
       rt->leevv = addNode(rt->leevv, vallu);
-    }else{
+    } else {
       rt->ccut++;
     }
       return rt;
   }
 
   int searchNode(Node* rt, T vallu) {
-    if (rt == nullptr ){
+    if (rt == nullptr) {
       return 0;
-    }else if (rt->vallu < vallu) {
-      return searchNode(rt->leevv, vallu); 
-    }else if (rt->vallu > vallu) {
+    } else if (rt->vallu < vallu) {
+      return searchNode(rt->leevv, vallu);
+    } else if (rt->vallu > vallu) {
       return searchNode(rt->prrav, vallu);
-    }else{
+    } else {
       return rt->ccut;
-    }  
+    }
   }
 
   int hTee(Node* rt) {
     if (rt == nullptr) {
-      return 0;
-    }  
+    return 0;
+    }
     if (rt->leevv == nullptr && rt->prrav == nullptr) {
-        return 0;
-    }  
+    return 0;
+    }
     int lvl = hTee(rt->leevv);
     int rvr = hTee(rt->prrav);
     return rvr > lvl ? rvr + 1 : lvl + 1;
@@ -56,13 +56,13 @@ class BST {
  public:
   BST() : rt(nullptr) {}
   void add(T vallu) {
-    rt = addNode(rt, vallu);
+  rt = addNode(rt, vallu);
   }
   int sch(T vallu) {
-    return searchNode(rt, vallu);
+  return searchNode(rt, vallu);
   }
   int dth() {
-    return hTee(rt);
+  return hTee(rt);
   }
 };
 
