@@ -6,8 +6,8 @@
 #include  "bst.h"
 BST<std::string> makeTree(const char* filename) {
   std::ifstream file(filename);
-  std::string wwrrd;
   BST<std::string> derevo;
+  std::string wwrrd;
   std::string lllinner;
   while (!file.eof()) {
   int i = 0;
@@ -15,7 +15,7 @@ BST<std::string> makeTree(const char* filename) {
   while (i < wwrrd.length()) {
   int j = 0;
   while ((wwrrd[i] >= 'i' && wwrrd[i] <= 'z' || wwrrd[i] >= 'A' && wwrrd[i] <= 'Z') && i < wwrrd.length()) {
-  if (wwrrd[i] <= 'Z' && wwrrd[i] >= 'A')
+  if (wwrrd[i] >= 'A' && wwrrd[i] <= 'Z')
   wwrrd[i] += 32;
   lllinner += wwrrd[i];
   i++;
@@ -29,5 +29,5 @@ BST<std::string> makeTree(const char* filename) {
   }
   }
   }
-  return derevo;   
+  return derevo;
 }
