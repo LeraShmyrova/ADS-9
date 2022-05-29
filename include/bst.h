@@ -2,66 +2,68 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
-template<typename T>
+template <typename T>
 class BST {
- private:
+ public:
   struct Node {
-  int ccut;
-  Node *prrav;
-  Node *leevv;
-  T vallu;
+    T value;
+    int summ;
+    Node * left;
+    Node * right;
   };
-  Node *rt;
 
-  Node* addNode(Node* rt, T vallu) {
-    if (rt == nullptr) {
-      rt = new Node;
-      rt->vallu = vallu;
-      rt->ccut = 1;
-      rt->leevv = rt->prrav = nullptr;
-    } else if (rt->vallu > vallu) {
-      rt->prrav = addNode(rt->prrav, vallu);
-    } else if (rt->vallu < vallu) {
-      rt->leevv = addNode(rt->leevv, vallu);
+ private:
+  Node * root;
+  Node * addNode(Node *root, T value) {
+    if (root == nullptr) {
+      root = new Node;
+      root->value = value;
+      root->summ = 1;
+      root->left = root->right = nullptr;
+    } else if (root->value > value) {
+      root->left = addNode(root->left, value);
+    } else if (root->value < value) {
+      root->right = addNode(root->right, value);
     } else {
-      rt->ccut++;
+      root->summ++;
     }
-      return rt;
+    return root;
   }
-
-  int searchNode(Node* rt, T vallu) {
-    if (rt == nullptr) {
+  int depthTree(Node *root) {
+    if (root == nullptr)
       return 0;
-    } else if (rt->vallu < vallu) {
-      return searchNode(rt->leevv, vallu);
-    } else if (rt->vallu > vallu) {
-      return searchNode(rt->prrav, vallu);
+    if (root->left == nullptr && root->right == nullptr)
+      return 0;
+    int LS = depthTree(root->left);
+    int RS = depthTree(root->right);
+    return LS > RS ? LS + 1 : RS + 1;
+  }
+  int searchNode(Node *root, T value) {
+    Node *t = root;
+    if (root == nullptr) {
+      return 0;
     } else {
-      return rt->ccut;
-    }
-  }
-
-  int hTee(Node* rt) {
-    if (rt == nullptr)
-    return 0;
-    if (rt->leevv == nullptr && rt->prrav == nullptr)
-    return 0;
-    int l = hTee(rt->leevv);
-    int r = hTee(rt->prrav);
-    return r > l ? r + 1 : l + 1;
-  }
+      if (root->value == value)
+        return root->summ;
+      else if (root->value < value)
+        return searchNode(root->right, value);    
+      else
+        return searchNode(root->left, value);
+    }    
+  }     
 
  public:
-  BST() : rt(nullptr) {}
-  void add(T vallu) {
-  rt = addNode(rt, vallu);
-  }
-  int search(T vallu) {
-  return searchNode(rt, vallu);
+  BST() : root(nullptr) {}
+  ~BST() {}   
+
+  void add(T value) {
+    root = addNode(root, value);
   }
   int depth() {
-  return hTee(rt);
+    return depthTree(root);
+  }
+  int search(T value) {
+    return searchNode(root, value);
   }
 };
-
 #endif  // INCLUDE_BST_H_
