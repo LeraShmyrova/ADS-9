@@ -42,15 +42,13 @@ class BST {
   }
 
   int hTee(Node* rt) {
-    if (rt == nullptr) {
+    if (rt == nullptr)
     return 0;
-    }
-    if (rt->leevv == nullptr && rt->prrav == nullptr) {
+    if (rt->leevv == nullptr && rt->prrav == nullptr)
     return 0;
-    }
-    int lvl = hTee(rt->leevv);
-    int rvr = hTee(rt->prrav);
-    return rvr > lvl ? rvr + 1 : lvl + 1;
+    int l = hTee(rt->leevv);
+    int r = hTee(rt->prrav);
+    return r > l ? r + 1 : l + 1;
   }
 
  public:
