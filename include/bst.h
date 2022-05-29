@@ -7,63 +7,63 @@ class BST {
  public:
   struct Node {
     T value;
-    int summ;
-    Node * left;
-    Node * right;
-  };
+    int ssuumma;
+    Node *levv;
+    Node *rht;
+  };  
 
  private:
-  Node * root;
-  Node * addNode(Node *root, T value) {
-    if (root == nullptr) {
-      root = new Node;
-      root->value = value;
-      root->summ = 1;
-      root->left = root->right = nullptr;
-    } else if (root->value > value) {
-      root->left = addNode(root->left, value);
-    } else if (root->value < value) {
-      root->right = addNode(root->right, value);
+  Node * rroooot;
+  Node * addNode(Node *rroooot, T value) {
+    if (rroooot == nullptr) {
+      rroooot = new Node;
+      rroooot->value = value;
+      rroooot->ssuumma = 1;
+      rroooot->levv = rroooot->rht = nullptr;
+    } else if (rroooot->value > value) {
+      rroooot->levv = addNode(rroooot->levv, value);
+    } else if (rroooot->value < value) {
+      rroooot->rht = addNode(rroooot->rht, value);
     } else {
-      root->summ++;
+      rroooot->ssuumma++;
     }
-    return root;
+    return rroooot;
   }
-  int depthTree(Node *root) {
-    if (root == nullptr)
+  int depthTree(Node *rroooot) {
+    if (rroooot == nullptr)
       return 0;
-    if (root->left == nullptr && root->right == nullptr)
+    if (rroooot->levv == nullptr && rroooot->rht == nullptr)
       return 0;
-    int LS = depthTree(root->left);
-    int RS = depthTree(root->right);
+    int LS = depthTree(rroooot->levv);
+    int RS = depthTree(rroooot->rht);
     return LS > RS ? LS + 1 : RS + 1;
   }
-  int searchNode(Node *root, T value) {
-    Node *t = root;
-    if (root == nullptr) {
+  int searchNode(Node *rroooot, T value) {
+    Node *t = rroooot;
+    if (rroooot == nullptr) {
       return 0;
     } else {
-      if (root->value == value)
-        return root->summ;
-      else if (root->value < value)
-        return searchNode(root->right, value);    
-      else
-        return searchNode(root->left, value);
-    }    
-  }     
+      if (rroooot->value == value) {
+        return rroooot->ssuumma;
+      } else if (rroooot->value < value) {
+        return searchNode(rroooot->rht, value);
+      } else {
+        return searchNode(rroooot->levv, value);
+      }
+    }
+  }
 
  public:
-  BST() : root(nullptr) {}
-  ~BST() {}   
-
+  BST() : rroooot(nullptr) {}
+  ~BST() {}
   void add(T value) {
-    root = addNode(root, value);
+    rroooot = addNode(rroooot, value);
   }
   int depth() {
-    return depthTree(root);
+    return depthTree(rroooot);
   }
   int search(T value) {
-    return searchNode(root, value);
+    return searchNode(rroooot, value);
   }
 };
 #endif  // INCLUDE_BST_H_
